@@ -384,6 +384,15 @@ local function new(self, major_version)
   --
   -- This function should be used in the `header_filter` phase, as Kong is
   -- preparing headers to be sent back to the client.
+  --
+  -- Note: Underscores in Header names are automatically transformed into dashes
+  -- by default. If you want to deactivate this behavior you should set
+  -- the `lua_transform_underscores_in_response_headers` nginx config option to `off`
+  --
+  -- An easy way to do this is in the Kong Config file:
+  --
+  --     lua_transform_underscores_in_response_headers = off
+  --
   -- @function kong.response.set_header
   -- @phases rewrite, access, header_filter, admin_api
   -- @tparam string name The name of the header
